@@ -1,10 +1,10 @@
-MA 615 Homework 8
+Analysis of Historical Economic Data
 ================
 Shivangi
 
-For this HW we will use a dataset of historical economic data derived
+For this project I used a dataset of historical economic data derived
 from <http://www.jerrydwyer.com/growth/index.html>. The data variables
-are described below and we’ll be investigating which variables can be
+are described below and I’ll be investigating which variables can be
 used to predict `ypp`, the output per-capita.
 
 | Variable | Description                                       |
@@ -22,8 +22,6 @@ used to predict `ypp`, the output per-capita.
 | sscap    | Steady State Capital Stock                        |
 | kpw      | Capital Per Worker (Perpetual Inventory)          |
 | lfpr     | Labor Force Particpation Rate                     |
-
-## Question 1
 
 ``` r
 suppressPackageStartupMessages(library(tidyverse))
@@ -46,15 +44,13 @@ ggplot(econ_joined) +
   facet_grid(names.y ~ names.x, scales = "free")
 ```
 
-![](hw8_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+![](Analysis_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 This plot shows the relationship between each Variable with every other
 variable. We can also see how this relationship changes with time. We
 can notice a very clear linear relationship between level of human
 capital and Average years of schooling. Here, Average years of schooling
 and Level of Human Capital increases over time.
-
-## Question 2
 
 ``` r
 suppressPackageStartupMessages(library(leaps))
@@ -143,8 +139,6 @@ summary(bestModel)
     ## Multiple R-squared:  0.8632, Adjusted R-squared:  0.8627 
     ## F-statistic:  1518 on 4 and 962 DF,  p-value: < 2.2e-16
 
-## Question 3
-
 ``` r
 suppressPackageStartupMessages(library(leaps))
 
@@ -232,15 +226,6 @@ summary(bestModel)
     ## Multiple R-squared:  0.8632, Adjusted R-squared:  0.8627 
     ## F-statistic:  1518 on 4 and 962 DF,  p-value: < 2.2e-16
 
-## Question 4
-
-Is the best model (according to `cp`) the same in Q2 and Q3?
-
-That is true, the best model in question 2 and 3 is same
-
-Are all of the selected predictors for backwards and forwards selection
-the same for each number of predictors? If not which are different?
-
 Selected predictors are not same each number of predictor.
 
 ``` r
@@ -270,24 +255,6 @@ table(forwardSelection$which == backwardSelection$which)
     ## 
     ## FALSE  TRUE 
     ##     4    86
-
-If you were to choose a model using just three predictors, which would
-you choose?
-
-I will choose the one with lowest cp. Backward Selection Model in this
-case.
-
-``` r
-forwardSelection$cp[3]
-```
-
-    ## [1] 132.7914
-
-``` r
-backwardSelection$cp[3]
-```
-
-    ## [1] 115.3853
 
 ``` r
 suppressPackageStartupMessages(library(modelr))
