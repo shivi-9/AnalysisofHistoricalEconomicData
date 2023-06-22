@@ -8,6 +8,7 @@ The following R packages are used in this project:
 * tidyverse
 * leaps
 * modelr
+  
 Make sure these packages are installed in your R environment before running the code.
 
 ## Requirements
